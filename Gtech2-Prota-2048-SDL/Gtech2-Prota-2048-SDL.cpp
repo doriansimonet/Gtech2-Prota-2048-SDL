@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Grid.h"
+//#include "Window.h"
 #include <vector> //Ne pas oublier !
 #include <conio.h>
 #include <SDL.h>
@@ -23,6 +24,9 @@ int main()
     tab->Rand();
     tab->Rand();
     tab->Show();
+
+    /*Window* window = new Window;
+    window->Create();*/
 
     while (true) {
         bool badKey = true;
