@@ -8,5 +8,7 @@ private:
 
 public:
 	Window();
-	void Create();
+	void Create(int width, int height);
+	SDL_Renderer* GetRenderer();
+
 };

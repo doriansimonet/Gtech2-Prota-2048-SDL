@@ -3,9 +3,14 @@
 class GameObject
 {
 private:
-	SDL_Surface* m_surface;
-	SDL_Texture* m_texture;
+	int m_posX;
+	int m_posY;
+	int m_Width;
+	int m_Height;
 
 public:
-	GameObject(SDL_Surface* surface, SDL_Texture* texture);
+	GameObject();
+	void Draw(SDL_Renderer* Renderer);
+	void ChangePos(int posX, int posY);
 };
+

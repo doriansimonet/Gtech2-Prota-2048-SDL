@@ -1,7 +1,21 @@
 #include <iostream>
 #include "GameObject.h"
 
-GameObject::GameObject(SDL_Surface* surface, SDL_Texture* texture) {
-	m_surface = surface;
-	m_texture = texture;
+
+GameObject::GameObject() {
+	m_posX = 0;
+	m_posY = 0;
+	m_Width = 100;
+	m_Height = 100;
+}
+
+void GameObject::Draw(SDL_Renderer* renderer) {
+	SDL_Rect rect = { m_posX, m_posY, m_Width, m_Height };
+	SDL_RenderFillRect(renderer, &rect);
+	SDL_RenderPresent(renderer);
+}
+
+void GameObject::ChangePos(int posX, int posY) {
+	m_posX = posX;
+	m_posY = posY;
 }

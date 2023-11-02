@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include "Grid.h"
-//#include "Window.h"
+#include "Window.h"
+#include "GameObject.h"
 #include <vector> //Ne pas oublier !
 #include <conio.h>
 #include <SDL.h>
@@ -15,7 +16,7 @@
 
 
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Hello World!\n";
     srand(time(NULL));
@@ -25,8 +26,31 @@ int main()
     tab->Rand();
     tab->Show();
 
-    /*Window* window = new Window;
-    window->Create();*/
+    Window* window = new Window;
+    window->Create(400, 400);
+    SDL_Renderer* renderer = window->GetRenderer();
+    GameObject* gameobject1 = new GameObject;
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    gameobject1->Draw(renderer);
+
+
+    SDL_Surface* pSurface = SDL_LoadBMP("img/2-test.bmp");
+    if (pSurface == NULL)
+    {
+        std::cout << "Error SDL_LoadBMP :" << SDL_GetError();
+        exit(1);
+    }
+
+    SDL_Texture* pTexture = SDL_CreateTextureFromSurface(renderer, pSurface);
+    if (pTexture == NULL)
+    {
+        std::cout << "Error SDL_CreateTextureFromSurface :" << SDL_GetError();
+        exit(1);
+    }
+    /*SDL_Rect deux = {0,0,100,100};
+    SDL_SetRenderTarget(renderer, pTexture); 
+    SDL_RenderCopy(renderer, pTexture, NULL, &deux);
+    SDL_RenderPresent(renderer);*/
 
     while (true) {
         bool badKey = true;
