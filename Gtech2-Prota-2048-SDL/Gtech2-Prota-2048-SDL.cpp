@@ -27,14 +27,14 @@ int main(int argc, char** argv)
     tab->Show();
 
     Window* window = new Window;
-    window->Create(400, 400);
+    window->Create(500, 500);
     SDL_Renderer* renderer = window->GetRenderer();
     GameObject* gameobject1 = new GameObject;
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 47, 43,40, 255);
+    SDL_RenderPresent(renderer);
     gameobject1->Draw(renderer);
 
-
-    SDL_Surface* pSurface = SDL_LoadBMP("img/2-test.bmp");
+    SDL_Surface* pSurface = SDL_LoadBMP("img/2048.bmp");
     if (pSurface == NULL)
     {
         std::cout << "Error SDL_LoadBMP :" << SDL_GetError();
@@ -47,10 +47,29 @@ int main(int argc, char** argv)
         std::cout << "Error SDL_CreateTextureFromSurface :" << SDL_GetError();
         exit(1);
     }
-    /*SDL_Rect deux = {0,0,100,100};
+
+    for (int i = 0; i < 500; i += 125) {
+        for (int j = 0; j < 500; j += 125) {
+            int icase = i - j;
+            if (icase < 0) {
+                icase = icase * (-1);
+            }
+            icase = (icase /125);
+            if (icase%2 == 0 ) {
+                SDL_SetRenderDrawColor(renderer,176, 146, 106,255);
+            }
+            else {
+                SDL_SetRenderDrawColor(renderer, 190, 160, 120, 255);
+            }
+            
+            gameobject1->ChangePos(i, j);
+            gameobject1->Draw(renderer);
+        }
+    }
+    SDL_Rect deux = {0,0,125,125};
     SDL_SetRenderTarget(renderer, pTexture); 
     SDL_RenderCopy(renderer, pTexture, NULL, &deux);
-    SDL_RenderPresent(renderer);*/
+    SDL_RenderPresent(renderer);
 
     while (true) {
         bool badKey = true;

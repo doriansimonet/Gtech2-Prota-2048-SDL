@@ -5,8 +5,8 @@
 GameObject::GameObject() {
 	m_posX = 0;
 	m_posY = 0;
-	m_Width = 100;
-	m_Height = 100;
+	m_Width = 125;
+	m_Height = 125;
 }
 
 void GameObject::Draw(SDL_Renderer* renderer) {
